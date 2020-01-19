@@ -1,0 +1,17 @@
+notests *default:
+  build:
+    target: Vostok.Configuration.Sources.Vault.sln
+    configuration: NoTests
+    tool:
+      name: dotnet
+
+  install:
+    - Vostok.Configuration.Sources.Vault/bin/Release/netstandard2.0/Vostok.Configuration.Sources.Vault.dll
+
+  deps:
+    - vostok.devtools
+
+full-build > notests:
+  build:
+    target: Vostok.Configuration.Sources.Vault.sln
+    configuration: Release
