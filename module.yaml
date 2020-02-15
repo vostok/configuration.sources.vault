@@ -7,9 +7,21 @@ notests *default:
 
   install:
     - Vostok.Configuration.Sources.Vault/bin/Release/netstandard2.0/Vostok.Configuration.Sources.Vault.dll
+    - module vostok.clusterclient.core
+    - module vostok.configuration.abstractions
+    - module vostok.logging.abstractions
 
   deps:
+    - vostok.clusterclient.core
+    - vostok.clusterclient.transport
+    - vostok.commons.environment/src
+    - vostok.commons.time/src
+    - vostok.configuration
+    - vostok.configuration.abstractions
+    - vostok.configuration.sources
+    - vostok.configuration.sources.json
     - vostok.devtools
+    - vostok.logging.abstractions
 
 full-build > notests:
   build:
