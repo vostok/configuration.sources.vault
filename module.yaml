@@ -15,6 +15,7 @@ notests *default:
     - vostok.clusterclient.core
     - vostok.clusterclient.transport
     - vostok.commons.environment/src
+    - vostok.commons.threading/src
     - vostok.commons.time/src
     - vostok.configuration
     - vostok.configuration.abstractions
