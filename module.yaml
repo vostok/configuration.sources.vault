@@ -28,3 +28,6 @@ full-build > notests:
   build:
     target: Vostok.Configuration.Sources.Vault.sln
     configuration: Release
+
+   deps:
+    - vostok.commons.testing/src
