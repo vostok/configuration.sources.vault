@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Vostok.Clusterclient.Core;
 using Vostok.Clusterclient.Core.Model;
 using Vostok.Commons.Time;
+using Vostok.Configuration.Abstractions.SettingsTree;
 using Vostok.Configuration.Sources.Json;
 
 namespace Vostok.Configuration.Sources.Vault.Login
@@ -13,6 +14,9 @@ namespace Vostok.Configuration.Sources.Vault.Login
     public class LoginMethod : ILoginMethod
     {
         private const string AuthScope = "auth";
+        private const string TokenField = "client_token";
+        private const string RenewableField = "renewable";
+        private const string LeaseDurationField = "lease_duration";
 
         private readonly Func<Request> requestFactory;
 
@@ -26,29 +30,17 @@ namespace Vostok.Configuration.Sources.Vault.Login
             var response = (await client.SendAsync(request, cancellationToken: cancellation).ConfigureAwait(false)).Response;
             if (response.IsSuccessful && response.HasContent)
             {
-                var responseSource = new JsonStringSource(response.Content.ToString());
-                var responseDto = ConfigurationProvider.Default.Get<LoginDto>(responseSource.ScopeTo(AuthScope));
+                var authData = JsonConfigurationParser.Parse(response.Content.ToString())?.ScopeTo(AuthScope);
 
                 return new LoginResult(
                     response.Code,
-                    responseDto.client_token,
-                    responseDto.renewable ?? false,
-                    responseDto.lease_duration?.Seconds());
+                    authData?[TokenField]?.Value,
+                    bool.TryParse(authData?[RenewableField]?.Value, out var renewable) && renewable,
+                    int.TryParse(authData?[LeaseDurationField]?.Value, out var duration) ? duration.Seconds() : null as TimeSpan?);
             }
 
             return LoginResult.Failure(response.Code);
         }
-        
-        private class LoginDto
-        {
-            [UsedImplicitly]
-            public string client_token { get; }
-
-            [UsedImplicitly]
-            public int? lease_duration { get;  }
-
-            [UsedImplicitly]
-            public bool? renewable { get; }
-        }
+       
     }
 }
