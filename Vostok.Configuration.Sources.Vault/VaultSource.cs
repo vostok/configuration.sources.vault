@@ -17,12 +17,8 @@ using Vostok.Logging.Abstractions;
 namespace Vostok.Configuration.Sources.Vault
 {
     /// <summary>
-    /// <para></para>
-    /// <para></para>
-    /// <para></para>
-    /// <para></para>
-    /// <para></para>
-    /// <para></para>
+    /// <para><see cref="VaultSource"/> is capable of reading and monitoring a single secret from Vault.</para>
+    /// <para>See <see cref="VaultSourceSettings"/> for configuration options and remember to dispose of instances that are no longer needed.</para>
     /// </summary>
     [PublicAPI]
     public class VaultSource : IConfigurationSource, IDisposable
@@ -91,7 +87,7 @@ namespace Vostok.Configuration.Sources.Vault
 
                 try
                 {
-                    await EnsureTokenAsync().ConfigureAwait(false);
+                    await UpdateTokenAsync().ConfigureAwait(false);
 
                     await UpdateSecretAsync().ConfigureAwait(false);
 
@@ -113,7 +109,7 @@ namespace Vostok.Configuration.Sources.Vault
             }
         }
 
-        private async Task EnsureTokenAsync()
+        private async Task UpdateTokenAsync()
         {
             if (state.Token == null)
                 await loginHelper.LoginAsync(settings.Login).ConfigureAwait(false);
