@@ -34,7 +34,6 @@ namespace Vostok.Configuration.Sources.Vault.Login
                         loginResult.TTL?.ToPrettyString() ?? "unknown");
 
                     state.SetToken(loginResult.Token);
-                    state.CancelTokenRenewal();
 
                     if (loginResult.Renewable && loginResult.TTL.HasValue)
                     {

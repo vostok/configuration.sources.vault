@@ -43,7 +43,11 @@ namespace Vostok.Configuration.Sources.Vault
         public bool HasSecretData => currentSecretData != null;
 
         public void SetToken(string newToken)
-            => Interlocked.Exchange(ref token, newToken);
+        {
+            CancelTokenRenewal();
+
+            Interlocked.Exchange(ref token, newToken);
+        }
 
         public bool DropToken()
         {
@@ -58,9 +62,6 @@ namespace Vostok.Configuration.Sources.Vault
         public void RenewTokenImmediately()
             => Interlocked.Exchange(ref renewBudget, TimeBudget.Expired);
 
-        public void CancelTokenRenewal()
-            => Interlocked.Exchange(ref renewBudget, null);
-
         public void CancelSecretUpdates()
             => localCancellation.Cancel();
 
@@ -72,5 +73,8 @@ namespace Vostok.Configuration.Sources.Vault
             SecretDataSource.Push(currentSecretData = newSecretData);
             return true;
         }
+
+        private void CancelTokenRenewal()
+            => Interlocked.Exchange(ref renewBudget, null);
     }
 }
