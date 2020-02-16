@@ -34,14 +34,14 @@ namespace Vostok.Configuration.Sources.Vault.Login
                         loginResult.TTL?.ToPrettyString() ?? "unknown");
 
                     state.SetToken(loginResult.Token);
-                    state.CancelRenewal();
+                    state.CancelTokenRenewal();
 
                     if (loginResult.Renewable && loginResult.TTL.HasValue)
                     {
                         var renewDelay = loginResult.TTL.Value.Multiply(0.9);
                         if (renewDelay > TimeSpan.Zero)
                         {
-                            state.RenewAfter(renewDelay);
+                            state.RenewTokenAfter(renewDelay);
                             log.Info("Scheduled a token renew after {TokenRenewDelay}.", renewDelay.ToPrettyString());
                         }
                     }

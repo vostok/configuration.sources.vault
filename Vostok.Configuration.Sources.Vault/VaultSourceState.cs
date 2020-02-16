@@ -47,21 +47,21 @@ namespace Vostok.Configuration.Sources.Vault
 
         public bool DropToken()
         {
-            CancelRenewal();
+            CancelTokenRenewal();
 
             return Interlocked.Exchange(ref token, null) != null;
         }
 
-        public void RenewAfter(TimeSpan delay)
+        public void RenewTokenAfter(TimeSpan delay)
             => Interlocked.Exchange(ref renewBudget, TimeBudget.StartNew(delay));
 
-        public void RenewImmediately()
+        public void RenewTokenImmediately()
             => Interlocked.Exchange(ref renewBudget, TimeBudget.Expired);
 
-        public void CancelRenewal()
+        public void CancelTokenRenewal()
             => Interlocked.Exchange(ref renewBudget, null);
 
-        public void CancelUpdates()
+        public void CancelSecretUpdates()
             => localCancellation.Cancel();
 
         public bool UpdateSecretData(ISettingsNode newSecretData)

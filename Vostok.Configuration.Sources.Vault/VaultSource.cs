@@ -75,7 +75,7 @@ namespace Vostok.Configuration.Sources.Vault
         public void Dispose()
         {
             if (disposeGate.TrySetTrue())
-                state.CancelUpdates();
+                state.CancelSecretUpdates();
         }
 
         private async Task RunAsync()
