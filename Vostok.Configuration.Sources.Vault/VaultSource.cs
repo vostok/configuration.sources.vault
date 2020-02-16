@@ -16,9 +16,14 @@ using Vostok.Logging.Abstractions;
 
 namespace Vostok.Configuration.Sources.Vault
 {
-    // TODO(iloktionov): Xml-docs.
-    // TODO(iloktionov): Unit tests.
-
+    /// <summary>
+    /// <para></para>
+    /// <para></para>
+    /// <para></para>
+    /// <para></para>
+    /// <para></para>
+    /// <para></para>
+    /// </summary>
     [PublicAPI]
     public class VaultSource : IConfigurationSource, IDisposable
     {

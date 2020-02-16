@@ -17,7 +17,6 @@ notests *default:
     - vostok.commons.environment/src
     - vostok.commons.threading/src
     - vostok.commons.time/src
-    - vostok.configuration
     - vostok.configuration.abstractions
     - vostok.configuration.sources
     - vostok.configuration.sources.json
