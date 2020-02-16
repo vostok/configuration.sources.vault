@@ -62,9 +62,7 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
 
             try
             {
-                var secretDataSource = new JsonStringSource(result.Payload).ScopeTo(SecretDataScope);
-
-                return ConfigurationProvider.Default.Get<ISettingsNode>(secretDataSource);
+                return JsonConfigurationParser.Parse(result.Payload).ScopeTo(SecretDataScope);
             }
             catch
             {
