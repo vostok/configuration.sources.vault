@@ -8,20 +8,8 @@ namespace Vostok.Configuration.Sources.Vault.Login
     public class HomeFolderTokenLogin : TokenLogin
     {
         public HomeFolderTokenLogin()
-            : base(ReadHomeFolderToken)
+            : base(() => System.IO.File.ReadAllText(Path.Combine(EnvironmentInfo.HomeDirectory, ".vault-token")).Trim())
         {
-        }
-
-        private static string ReadHomeFolderToken()
-        {
-            var path = Path.Combine(EnvironmentInfo.HomeDirectory, ".vault-token");
-
-            if (!System.IO.File.Exists(path))
-                return null;
-
-            var content = System.IO.File.ReadAllText(path).Trim();
-
-            return string.IsNullOrWhiteSpace(content) ? null : content;
         }
     }
 }
