@@ -31,12 +31,14 @@ namespace Vostok.Configuration.Sources.Vault.Login
             if (response.IsSuccessful && response.HasContent)
             {
                 var authData = JsonConfigurationParser.Parse(response.Content.ToString())?.ScopeTo(AuthScope);
+                if (authData == null)
+                    return LoginResult.Failure(response.Code);
 
                 return new LoginResult(
                     response.Code,
-                    authData?[TokenField]?.Value,
-                    bool.TryParse(authData?[RenewableField]?.Value, out var renewable) && renewable,
-                    int.TryParse(authData?[LeaseDurationField]?.Value, out var duration) ? duration.Seconds() : null as TimeSpan?);
+                    authData[TokenField]?.Value,
+                    bool.TryParse(authData[RenewableField]?.Value, out var renewable) && renewable,
+                    int.TryParse(authData[LeaseDurationField]?.Value, out var duration) ? duration.Seconds() : null as TimeSpan?);
             }
 
             return LoginResult.Failure(response.Code);
