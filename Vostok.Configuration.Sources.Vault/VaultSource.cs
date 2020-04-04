@@ -94,6 +94,8 @@ namespace Vostok.Configuration.Sources.Vault
                     if (!settings.EnablePeriodicUpdates && state.HasSecretData)
                         return;
 
+                    PropagateErrorIfNeeded();
+
                     await WaitForNextIteration(budget).ConfigureAwait(false);
                 }
                 catch (OperationCanceledException)
@@ -103,6 +105,8 @@ namespace Vostok.Configuration.Sources.Vault
                 catch (Exception error)
                 {
                     log.Error(error);
+
+                    state.PushError(error);
 
                     await WaitForNextIteration(budget).ContinueWith(_ => {}).ConfigureAwait(false);
                 }
@@ -130,6 +134,20 @@ namespace Vostok.Configuration.Sources.Vault
             await secretUpdater.UpdateAsync().ConfigureAwait(false);
 
             state.Cancellation.ThrowIfCancellationRequested();
+        }
+
+        private void PropagateErrorIfNeeded()
+        {
+            if (state.Token == null)
+            {
+                state.PushError(new VaultSourceException("Failed to obtain a vaild auth token. See logs for more details."));
+                return;
+            }
+
+            if (!state.HasSecretData)
+            {
+                state.PushError(new VaultSourceException("Failed to fetch the secret from Vault. See logs for more details."));
+            }
         }
 
         private async Task WaitForNextIteration(TimeBudget budget)
