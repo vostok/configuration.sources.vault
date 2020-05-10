@@ -140,7 +140,7 @@ namespace Vostok.Configuration.Sources.Vault
         {
             if (state.Token == null)
             {
-                state.PushError(new VaultSourceException("Failed to obtain a vaild auth token. See logs for more details."));
+                state.PushError(new VaultSourceException("Failed to obtain a valid auth token. See logs for more details."));
                 return;
             }
 
