@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Vostok.Clusterclient.Core;
 using Vostok.Clusterclient.Core.Model;
+using Vostok.Commons.Time;
 using Vostok.Configuration.Abstractions.SettingsTree;
 using Vostok.Configuration.Sources.Json;
 using Vostok.Configuration.Sources.Vault.Helpers;
@@ -19,6 +20,8 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
         private readonly IClusterClient client;
         private readonly ILog log;
         private readonly string path;
+
+        private volatile TimeBudget tokenRenewCooldown = TimeBudget.Expired;
 
         public SecretUpdater(VaultSourceState state, IClusterClient client, ILog log, string path)
         {
@@ -50,8 +53,11 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
                 if (!state.IsCanceled)
                     log.Warn("Failed to read secret '{SecretPath}'. Response code = {ResponseCode}.", path, (int)response.Code);
 
-                if (result.IsAccessDenied)
+                if (result.IsAccessDenied && tokenRenewCooldown.HasExpired)
+                {
                     state.RenewTokenImmediately();
+                    tokenRenewCooldown = TimeBudget.StartNew(1.Minutes());
+                }
             }
         }
 
