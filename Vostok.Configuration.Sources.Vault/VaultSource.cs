@@ -56,6 +56,7 @@ namespace Vostok.Configuration.Sources.Vault
                     config.TargetServiceName = VaultServiceName;
                     config.DefaultTimeout = settings.RequestTimeout;
                     config.DefaultRequestStrategy = Strategy.Sequential1;
+                    config.SetupAdaptiveThrottling(10, 5);
                 });
 
             startupGate = new AtomicBoolean(false);
