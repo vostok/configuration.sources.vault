@@ -77,7 +77,7 @@ namespace Vostok.Configuration.Sources.Vault
         public void PushError(Exception error)
             => SecretDataSource.Push(currentSecretData, error);
 
-        private void CancelTokenRenewal()
+        public void CancelTokenRenewal()
             => Interlocked.Exchange(ref renewBudget, null);
     }
 }

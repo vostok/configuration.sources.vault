@@ -107,6 +107,7 @@ namespace Vostok.Configuration.Sources.Vault
                     log.Error(error);
 
                     state.PushError(error);
+                    state.CancelTokenRenewal();
 
                     await WaitForNextIteration(budget).ContinueWith(_ => {}).ConfigureAwait(false);
                 }

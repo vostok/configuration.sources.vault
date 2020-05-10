@@ -54,6 +54,8 @@ namespace Vostok.Configuration.Sources.Vault.Login
 
                     if (loginResult.IsAccessDenied && state.DropToken())
                         log.Warn("Dropped current token.");
+
+                    state.CancelTokenRenewal();
                 }
             }
             catch (Exception error)
@@ -62,6 +64,8 @@ namespace Vostok.Configuration.Sources.Vault.Login
                     return;
 
                 log.Error(error, "Failed to login with method '{LoginMethod}'.", login.GetType().Name);
+
+                state.CancelTokenRenewal();
             }
         }
     }
