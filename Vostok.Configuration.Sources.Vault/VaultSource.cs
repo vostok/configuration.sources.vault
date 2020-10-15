@@ -117,13 +117,8 @@ namespace Vostok.Configuration.Sources.Vault
 
         private async Task UpdateTokenAsync()
         {
-            if (state.Token == null)
+            if (state.Token == null || state.TokenNeedsRenew)
                 await loginHelper.LoginAsync(settings.Login).ConfigureAwait(false);
-
-            state.Cancellation.ThrowIfCancellationRequested();
-
-            if (state.Token != null && state.TokenNeedsRenew)
-                await loginHelper.LoginAsync(new TokenLogin(state.Token)).ConfigureAwait(false);
 
             state.Cancellation.ThrowIfCancellationRequested();
         }
