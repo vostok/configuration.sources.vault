@@ -1,3 +1,7 @@
+## 0.1.4 (16.10.2020):
+
+Fixed token renew.
+
 ## 0.1.3 (10.05.2020):
 
 - Fixed https://github.com/vostok/configuration.sources.vault/issues/6
