@@ -1,3 +1,7 @@
+## 0.1.5 (24.02.2021):
+
+Added Vault prefix to structured log event property names to avoid collisions.
+
 ## 0.1.4 (16.10.2020):
 
 Fixed token renew.
