@@ -157,7 +157,7 @@ namespace Vostok.Configuration.Sources.Vault
 
             if (waitDelay > TimeSpan.Zero)
             {
-                log.Info("Waiting {WaitDelay} for the next update..", waitDelay.ToPrettyString());
+                log.Info("Waiting {VaultWaitDelay} for the next update..", waitDelay.ToPrettyString());
 
                 await Task.Delay(waitDelay, state.Cancellation).ConfigureAwait(false);
             }

@@ -29,7 +29,7 @@ namespace Vostok.Configuration.Sources.Vault.Login
                 if (loginResult.IsSuccessful)
                 {
                     log.Info(
-                        "Successfully logged in with method '{LoginMethod}'. Got a token with TTL = {TokenTTL}.",
+                        "Successfully logged in with method '{VaultLoginMethod}'. Got a token with TTL = {VaultTokenTTL}.",
                         login.GetType().Name,
                         loginResult.TTL?.ToPrettyString() ?? "unknown");
 
@@ -41,7 +41,7 @@ namespace Vostok.Configuration.Sources.Vault.Login
                         if (renewDelay > TimeSpan.Zero)
                         {
                             state.RenewTokenAfter(renewDelay);
-                            log.Info("Scheduled a token renew after {TokenRenewDelay}.", renewDelay.ToPrettyString());
+                            log.Info("Scheduled a token renew after {VaultTokenRenewDelay}.", renewDelay.ToPrettyString());
                         }
                     }
                 }
@@ -50,7 +50,7 @@ namespace Vostok.Configuration.Sources.Vault.Login
                     if (state.IsCanceled)
                         return;
 
-                    log.Error("Failed to login with method '{LoginMethod}'. Code = {ResponseCode}.", login.GetType().Name, (int)loginResult.Code);
+                    log.Error("Failed to login with method '{VaultLoginMethod}'. Code = {VaultResponseCode}.", login.GetType().Name, (int)loginResult.Code);
 
                     if (loginResult.IsAccessDenied && state.DropToken())
                         log.Warn("Dropped current token.");
@@ -63,7 +63,7 @@ namespace Vostok.Configuration.Sources.Vault.Login
                 if (state.IsCanceled)
                     return;
 
-                log.Error(error, "Failed to login with method '{LoginMethod}'.", login.GetType().Name);
+                log.Error(error, "Failed to login with method '{VaultLoginMethod}'.", login.GetType().Name);
 
                 state.CancelTokenRenewal();
             }

@@ -51,7 +51,7 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
             else
             {
                 if (!state.IsCanceled)
-                    log.Warn("Failed to read secret '{SecretPath}'. Response code = {ResponseCode}.", path, (int)response.Code);
+                    log.Warn("Failed to read secret '{VaultSecretPath}'. Response code = {VaultResponseCode}.", path, (int)response.Code);
 
                 if (result.IsAccessDenied && tokenRenewCooldown.HasExpired)
                 {
