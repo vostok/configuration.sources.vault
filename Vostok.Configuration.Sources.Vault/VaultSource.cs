@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Vostok.Clusterclient.Core;
 using Vostok.Clusterclient.Core.Strategies;
+using Vostok.Clusterclient.Tracing;
 using Vostok.Clusterclient.Transport;
 using Vostok.Commons.Threading;
 using Vostok.Commons.Time;
@@ -11,6 +12,7 @@ using Vostok.Configuration.Abstractions.SettingsTree;
 using Vostok.Configuration.Sources.Vault.Login;
 using Vostok.Configuration.Sources.Vault.Secrets;
 using Vostok.Logging.Abstractions;
+using Vostok.Tracing.Abstractions;
 
 #pragma warning disable 4014
 
@@ -54,6 +56,7 @@ namespace Vostok.Configuration.Sources.Vault
                     config.Logging.LogReplicaRequests = false;
                     config.Logging.LogReplicaResults = false;
                     config.TargetServiceName = VaultServiceName;
+                    config.SetupDistributedTracing(TracerProvider.Get());
                     config.DefaultTimeout = settings.RequestTimeout;
                     config.DefaultRequestStrategy = Strategy.Sequential1;
                     config.SetupAdaptiveThrottling(10, 5);

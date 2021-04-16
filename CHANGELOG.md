@@ -1,3 +1,7 @@
+## 0.1.6 (16.04.2021):
+
+Added traces.
+
 ## 0.1.5 (24.02.2021):
 
 Added Vault prefix to structured log event property names to avoid collisions.

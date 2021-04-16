@@ -12,6 +12,8 @@ notests *default:
     - module vostok.logging.abstractions
 
   deps:
+    - vostok.clusterclient.tracing
+    - vostok.tracing.abstractions
     - vostok.clusterclient.core
     - vostok.clusterclient.transport
     - vostok.commons.environment/src
