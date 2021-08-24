@@ -26,6 +26,8 @@ namespace Vostok.Configuration.Sources.Vault.Login
 
         public TimeSpan? TTL { get; }
 
+        public bool IsSkipped { get; set; }
+        
         public bool IsSuccessful => Code.IsSuccessful() && !string.IsNullOrWhiteSpace(Token);
 
         public bool IsAccessDenied => Code == ResponseCode.Forbidden;

@@ -30,6 +30,6 @@ namespace Vostok.Configuration.Sources.Vault.Login
         public Task<LoginResult> LoginAsync(IClusterClient client, CancellationToken cancellation) =>
             Renew
                 ? renew.LoginAsync(client, cancellation)
-                : Task.FromResult(new LoginResult(ResponseCode.Ok, tokenProvider(), false, null));
+                : Task.FromResult(new LoginResult(ResponseCode.Ok, tokenProvider(), false, null) {IsSkipped = true});
     }
 }

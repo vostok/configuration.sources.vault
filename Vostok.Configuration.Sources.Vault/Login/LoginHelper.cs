@@ -28,10 +28,11 @@ namespace Vostok.Configuration.Sources.Vault.Login
                 var loginResult = await login.LoginAsync(client, state.Cancellation).ConfigureAwait(false);
                 if (loginResult.IsSuccessful)
                 {
-                    log.Info(
-                        "Successfully logged in with method '{VaultLoginMethod}'. Got a token with TTL = {VaultTokenTTL}.",
-                        login.GetType().Name,
-                        loginResult.TTL?.ToPrettyString() ?? "unknown");
+                    if (!loginResult.IsSkipped)
+                        log.Info(
+                            "Successfully logged in with method '{VaultLoginMethod}'. Got a token with TTL = {VaultTokenTTL}.",
+                            login.GetType().Name,
+                            loginResult.TTL?.ToPrettyString() ?? "unknown");
 
                     state.SetToken(loginResult.Token);
 
