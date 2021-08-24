@@ -1,3 +1,7 @@
+## 0.1.7 (24.08.2021):
+
+Disable token renew by default.
+
 ## 0.1.6 (16.04.2021):
 
 Added traces.
