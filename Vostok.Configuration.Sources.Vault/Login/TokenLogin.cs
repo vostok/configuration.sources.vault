@@ -22,7 +22,7 @@ namespace Vostok.Configuration.Sources.Vault.Login
         public TokenLogin([NotNull] Func<string> tokenProvider)
         {
             this.tokenProvider = tokenProvider;
-            renew = new LoginMethod(() => Request.Post("v1/auth/token/lookup-self").WithToken(tokenProvider()));
+            renew = new LoginMethod(() => Request.Post("v1/auth/token/renew-self").WithToken(tokenProvider()));
         }
 
         public bool Renew { get; set; }
