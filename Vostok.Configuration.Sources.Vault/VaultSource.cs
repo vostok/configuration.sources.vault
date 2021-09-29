@@ -48,7 +48,7 @@ namespace Vostok.Configuration.Sources.Vault
             log = settings.Log.ForContext<VaultSource>().ForContext(settings.Path);
 
             client = new ClusterClient(
-                log,
+                log.WithErrorsTransformedToWarns(),
                 config =>
                 {
                     config.ClusterProvider = settings.Cluster;
