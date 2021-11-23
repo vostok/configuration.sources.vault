@@ -1,6 +1,6 @@
 # Vostok.Configuration.Sources.Vault
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/vostok/configuration.sources.vault?svg=true&branch=master)](https://ci.appveyor.com/project/vostok/configuration.sources.vault/branch/master)
+[![Build & Test & Publish](https://github.com/vostok/configuration.sources.vault/actions/workflows/ci.yml/badge.svg)](https://github.com/vostok/configuration.sources.vault/actions/workflows/ci.yml)
 [![NuGet](https://img.shields.io/nuget/v/Vostok.Configuration.Sources.Vault.svg)](https://www.nuget.org/packages/Vostok.Configuration.Sources.Vault)
 
 This library contains a configuration source based on Vault client.
