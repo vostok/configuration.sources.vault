@@ -1,3 +1,7 @@
+## 0.1.8 (06-12-2021):
+
+Added `net6.0` target.
+
 ## 0.1.7 (24.08.2021):
 
 Disable token renew by default.
