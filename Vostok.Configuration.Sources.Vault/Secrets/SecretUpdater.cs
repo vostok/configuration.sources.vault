@@ -39,7 +39,7 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
 
         public async Task UpdateAsync()
         {
-            var request = Request.Get($"v1/{root}/{path}").WithToken(state.Token);
+            var request = Request.Get($"v1/{root}/data/{path}").WithToken(state.Token);
 
             var response = (await client.SendAsync(request, cancellationToken: state.Cancellation).ConfigureAwait(false)).Response;
 
