@@ -39,7 +39,7 @@ namespace Vostok.Configuration.Sources.Vault
         public ILoginMethod Login { get; }
 
         /// <summary>
-        /// Path to the directory where all secrets located.
+        /// Path to the directory where all the secrets located.
         /// </summary>
         [NotNull]
         public string Root { get; } = "secret/data";
