@@ -42,12 +42,7 @@ namespace Vostok.Configuration.Sources.Vault
         /// Path to the directory where all the secrets located.
         /// </summary>
         [NotNull]
-        public string Root { get; set; } = "secret/data";
-
-        /// <summary>
-        /// Path to the secret in vault response.
-        /// </summary>
-        public string[] Scope { get; set; } = {"data", "data"};
+        public string Root { get; } = "secret/data";
         
         /// <summary>
         /// Path to the secret being read (omit the <c>secret/</c> prefix here).

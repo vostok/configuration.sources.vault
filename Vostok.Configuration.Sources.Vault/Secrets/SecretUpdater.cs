@@ -14,16 +14,17 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
     {
         private const string SecretPrefix = "secret/";
 
+        private static readonly string[] SecretDataScope = {"data", "data"};
+
         private readonly VaultSourceState state;
         private readonly IClusterClient client;
         private readonly ILog log;
         private readonly string root;
         private readonly string path;
-        private readonly string[] scope;
 
         private volatile TimeBudget tokenRenewCooldown = TimeBudget.Expired;
 
-        public SecretUpdater(VaultSourceState state, IClusterClient client, ILog log, string root, string path, string[] scope)
+        public SecretUpdater(VaultSourceState state, IClusterClient client, ILog log, string root, string path)
         {
             this.state = state;
             this.client = client;
@@ -34,7 +35,6 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
                 path = path.Substring(SecretPrefix.Length);
 
             this.path = path;
-            this.scope = scope;
         }
 
         public async Task UpdateAsync()
@@ -70,7 +70,7 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
 
             try
             {
-                return JsonConfigurationParser.Parse(result.Payload).ScopeTo(scope);
+                return JsonConfigurationParser.Parse(result.Payload).ScopeTo(SecretDataScope);
             }
             catch
             {
