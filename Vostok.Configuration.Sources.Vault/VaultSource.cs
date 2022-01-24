@@ -66,7 +66,7 @@ namespace Vostok.Configuration.Sources.Vault
             disposeGate = new AtomicBoolean(false);
 
             loginHelper = new LoginHelper(state, client, log);
-            secretUpdater = new SecretUpdater(state, client, log, settings.Root, settings.Path);
+            secretUpdater = new SecretUpdater(state, client, log, settings.Root, settings.Path, settings.Scope);
         }
 
         public IObservable<(ISettingsNode settings, Exception error)> Observe()
