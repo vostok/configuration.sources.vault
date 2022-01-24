@@ -39,10 +39,10 @@ namespace Vostok.Configuration.Sources.Vault
         public ILoginMethod Login { get; }
 
         /// <summary>
-        /// Path to the directory where all the secrets located.
+        /// Path to the secret engine was mounted on.
         /// </summary>
         [NotNull]
-        public string Root { get; set; } = "secret";
+        public string MountPoint { get; set; } = "secret";
         
         /// <summary>
         /// Path to the secret being read (omit the <c>secret/</c> prefix here).

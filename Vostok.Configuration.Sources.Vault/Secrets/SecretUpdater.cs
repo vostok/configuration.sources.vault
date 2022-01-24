@@ -19,17 +19,17 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
         private readonly VaultSourceState state;
         private readonly IClusterClient client;
         private readonly ILog log;
-        private readonly string root;
+        private readonly string mountPoint;
         private readonly string path;
 
         private volatile TimeBudget tokenRenewCooldown = TimeBudget.Expired;
 
-        public SecretUpdater(VaultSourceState state, IClusterClient client, ILog log, string root, string path)
+        public SecretUpdater(VaultSourceState state, IClusterClient client, ILog log, string mountPoint, string path)
         {
             this.state = state;
             this.client = client;
             this.log = log;
-            this.root = root;
+            this.mountPoint = mountPoint;
 
             if (path.StartsWith(SecretPrefix))
                 path = path.Substring(SecretPrefix.Length);
@@ -39,7 +39,7 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
 
         public async Task UpdateAsync()
         {
-            var request = Request.Get($"v1/{root}/data/{path}").WithToken(state.Token);
+            var request = Request.Get($"v1/{mountPoint}/data/{path}").WithToken(state.Token);
 
             var response = (await client.SendAsync(request, cancellationToken: state.Cancellation).ConfigureAwait(false)).Response;
 
