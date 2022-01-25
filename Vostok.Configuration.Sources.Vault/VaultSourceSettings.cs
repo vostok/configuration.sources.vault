@@ -46,7 +46,7 @@ namespace Vostok.Configuration.Sources.Vault
         public string MountPoint { get; set; } = "secret";
         
         /// <summary>
-        /// Path to the secret being read (omit the <c>secret/</c> prefix here).
+        /// Path to the secret being read (omit the <see cref="MountPoint"/><c>/</c> prefix here).
         /// </summary>
         [NotNull]
         public string Path { get; }
