@@ -1,3 +1,7 @@
+## 0.1.10 (25-01-2022):
+
+Added `MountPoint` setting.
+
 ## 0.1.9 (06-12-2021):
 
 Added `net6.0` target.
