@@ -12,32 +12,33 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
 {
     internal class SecretUpdater
     {
-        private const string SecretPrefix = "secret/";
-
         private static readonly string[] SecretDataScope = {"data", "data"};
 
         private readonly VaultSourceState state;
         private readonly IClusterClient client;
         private readonly ILog log;
+        private readonly string mountPoint;
         private readonly string path;
 
         private volatile TimeBudget tokenRenewCooldown = TimeBudget.Expired;
 
-        public SecretUpdater(VaultSourceState state, IClusterClient client, ILog log, string path)
+        public SecretUpdater(VaultSourceState state, IClusterClient client, ILog log, string mountPoint, string path)
         {
             this.state = state;
             this.client = client;
             this.log = log;
+            this.mountPoint = mountPoint;
 
-            if (path.StartsWith(SecretPrefix))
-                path = path.Substring(SecretPrefix.Length);
+            var mountPointSlash = $"{mountPoint}/";
+            if (path.StartsWith(mountPointSlash))
+                path = path.Substring(mountPointSlash.Length);
 
             this.path = path;
         }
 
         public async Task UpdateAsync()
         {
-            var request = Request.Get($"v1/secret/data/{path}").WithToken(state.Token);
+            var request = Request.Get($"v1/{mountPoint}/data/{path}").WithToken(state.Token);
 
             var response = (await client.SendAsync(request, cancellationToken: state.Cancellation).ConfigureAwait(false)).Response;
 

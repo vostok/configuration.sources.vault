@@ -39,7 +39,14 @@ namespace Vostok.Configuration.Sources.Vault
         public ILoginMethod Login { get; }
 
         /// <summary>
-        /// Path to the secret being read (omit the <c>secret/</c> prefix here).
+        /// <para>Path to the secret engine was mounted on.</para>
+        /// <para>Only KV Secrets Engine Version 2 is supported.</para>
+        /// </summary>
+        [NotNull]
+        public string MountPoint { get; set; } = "secret";
+        
+        /// <summary>
+        /// Path to the secret being read (omit the <see cref="MountPoint"/><c>/</c> prefix here).
         /// </summary>
         [NotNull]
         public string Path { get; }
