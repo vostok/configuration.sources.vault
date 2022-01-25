@@ -12,8 +12,6 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
 {
     internal class SecretUpdater
     {
-        private const string SecretPrefix = "secret/";
-
         private static readonly string[] SecretDataScope = {"data", "data"};
 
         private readonly VaultSourceState state;
@@ -31,8 +29,9 @@ namespace Vostok.Configuration.Sources.Vault.Secrets
             this.log = log;
             this.mountPoint = mountPoint;
 
-            if (path.StartsWith(SecretPrefix))
-                path = path.Substring(SecretPrefix.Length);
+            var mountPointSlash = $"{mountPoint}/";
+            if (path.StartsWith(mountPointSlash))
+                path = path.Substring(mountPointSlash.Length);
 
             this.path = path;
         }
