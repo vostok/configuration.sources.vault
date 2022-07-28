@@ -1,0 +1,50 @@
+static Vostok.Configuration.Sources.Vault.Login.LoginResult.Failure(Vostok.Clusterclient.Core.Model.ResponseCode code) -> Vostok.Configuration.Sources.Vault.Login.LoginResult
+Vostok.Configuration.Sources.Vault.Login.AppRoleLogin
+Vostok.Configuration.Sources.Vault.Login.AppRoleLogin.AppRoleLogin(string roleId, string secretId) -> void
+Vostok.Configuration.Sources.Vault.Login.AppRoleLogin.AppRoleLogin(System.Func<string> roleIdProvider, System.Func<string> secretIdProvider) -> void
+Vostok.Configuration.Sources.Vault.Login.HomeFolderTokenLogin
+Vostok.Configuration.Sources.Vault.Login.HomeFolderTokenLogin.HomeFolderTokenLogin() -> void
+Vostok.Configuration.Sources.Vault.Login.ILoginMethod
+Vostok.Configuration.Sources.Vault.Login.ILoginMethod.LoginAsync(Vostok.Clusterclient.Core.IClusterClient client, System.Threading.CancellationToken cancellation) -> System.Threading.Tasks.Task<Vostok.Configuration.Sources.Vault.Login.LoginResult>
+Vostok.Configuration.Sources.Vault.Login.LDAPLogin
+Vostok.Configuration.Sources.Vault.Login.LDAPLogin.LDAPLogin(string user, string password) -> void
+Vostok.Configuration.Sources.Vault.Login.LDAPLogin.LDAPLogin(System.Func<string> userProvider, System.Func<string> passwordProvider) -> void
+Vostok.Configuration.Sources.Vault.Login.LoginMethod
+Vostok.Configuration.Sources.Vault.Login.LoginMethod.LoginAsync(Vostok.Clusterclient.Core.IClusterClient client, System.Threading.CancellationToken cancellation) -> System.Threading.Tasks.Task<Vostok.Configuration.Sources.Vault.Login.LoginResult>
+Vostok.Configuration.Sources.Vault.Login.LoginMethod.LoginMethod(System.Func<Vostok.Clusterclient.Core.Model.Request> requestFactory) -> void
+Vostok.Configuration.Sources.Vault.Login.LoginResult
+Vostok.Configuration.Sources.Vault.Login.LoginResult.Code.get -> Vostok.Clusterclient.Core.Model.ResponseCode
+Vostok.Configuration.Sources.Vault.Login.LoginResult.IsAccessDenied.get -> bool
+Vostok.Configuration.Sources.Vault.Login.LoginResult.IsSkipped.get -> bool
+Vostok.Configuration.Sources.Vault.Login.LoginResult.IsSkipped.set -> void
+Vostok.Configuration.Sources.Vault.Login.LoginResult.IsSuccessful.get -> bool
+Vostok.Configuration.Sources.Vault.Login.LoginResult.LoginResult(Vostok.Clusterclient.Core.Model.ResponseCode code, string token, bool renewable, System.TimeSpan? ttl) -> void
+Vostok.Configuration.Sources.Vault.Login.LoginResult.Renewable.get -> bool
+Vostok.Configuration.Sources.Vault.Login.LoginResult.Token.get -> string
+Vostok.Configuration.Sources.Vault.Login.LoginResult.TTL.get -> System.TimeSpan?
+Vostok.Configuration.Sources.Vault.Login.TokenLogin
+Vostok.Configuration.Sources.Vault.Login.TokenLogin.LoginAsync(Vostok.Clusterclient.Core.IClusterClient client, System.Threading.CancellationToken cancellation) -> System.Threading.Tasks.Task<Vostok.Configuration.Sources.Vault.Login.LoginResult>
+Vostok.Configuration.Sources.Vault.Login.TokenLogin.Renew.get -> bool
+Vostok.Configuration.Sources.Vault.Login.TokenLogin.Renew.set -> void
+Vostok.Configuration.Sources.Vault.Login.TokenLogin.TokenLogin(string token) -> void
+Vostok.Configuration.Sources.Vault.Login.TokenLogin.TokenLogin(System.Func<string> tokenProvider) -> void
+Vostok.Configuration.Sources.Vault.VaultSource
+Vostok.Configuration.Sources.Vault.VaultSource.Dispose() -> void
+Vostok.Configuration.Sources.Vault.VaultSource.Observe() -> System.IObservable<(Vostok.Configuration.Abstractions.SettingsTree.ISettingsNode settings, System.Exception error)>
+Vostok.Configuration.Sources.Vault.VaultSource.VaultSource(Vostok.Configuration.Sources.Vault.VaultSourceSettings settings) -> void
+Vostok.Configuration.Sources.Vault.VaultSourceSettings
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.Cancellation.get -> System.Threading.CancellationToken
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.Cancellation.set -> void
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.Cluster.get -> Vostok.Clusterclient.Core.Topology.IClusterProvider
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.EnablePeriodicUpdates.get -> bool
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.EnablePeriodicUpdates.set -> void
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.Log.get -> Vostok.Logging.Abstractions.ILog
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.Login.get -> Vostok.Configuration.Sources.Vault.Login.ILoginMethod
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.MountPoint.get -> string
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.MountPoint.set -> void
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.Path.get -> string
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.RequestTimeout.get -> System.TimeSpan
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.RequestTimeout.set -> void
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.UpdatePeriod.get -> System.TimeSpan
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.UpdatePeriod.set -> void
+Vostok.Configuration.Sources.Vault.VaultSourceSettings.VaultSourceSettings(Vostok.Clusterclient.Core.Topology.IClusterProvider cluster, Vostok.Configuration.Sources.Vault.Login.ILoginMethod login, Vostok.Logging.Abstractions.ILog log, string path) -> void
