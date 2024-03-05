@@ -1,3 +1,7 @@
+## 0.1.12 (05-03-2024):
+
+Now we can read whole folders structure into settings tree. 
+
 ## 0.1.10 (25-01-2022):
 
 Added `MountPoint` setting.
