@@ -1,3 +1,7 @@
+## 0.1.11 (20-11-2024):
+
+Update ClusterClient.
+
 ## 0.1.10 (25-01-2022):
 
 Added `MountPoint` setting.
