@@ -20,38 +20,10 @@
     <RepositoryUrl>https://github.com/vostok/configuration.sources.vault</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Vostok.Configuration.Sources.Json">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.configuration.sources.json\Vostok.Configuration.Sources.Json\bin\Release\$(ReferencesFramework)\Vostok.Configuration.Sources.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Configuration.Abstractions">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.configuration.abstractions\Vostok.Configuration.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Configuration.Sources">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.configuration.sources\Vostok.Configuration.Sources\bin\Release\$(ReferencesFramework)\Vostok.Configuration.Sources.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.ClusterClient.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.clusterclient.core\Vostok.ClusterClient.Core\bin\Release\$(ReferencesFramework)\Vostok.ClusterClient.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Logging.Abstractions">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.logging.abstractions\Vostok.Logging.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Logging.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.ClusterClient.Transport">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.clusterclient.transport\Vostok.ClusterClient.Transport\bin\Release\$(ReferencesFramework)\Vostok.ClusterClient.Transport.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Tracing.Abstractions">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.tracing.abstractions\Vostok.Tracing.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Tracing.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.ClusterClient.Tracing">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.clusterclient.tracing\Vostok.ClusterClient.Tracing\bin\Release\$(ReferencesFramework)\Vostok.ClusterClient.Tracing.dll</HintPath>
-    </Reference>
+    <ModuleReference Include="vostok.configuration.sources.json" />
+    <ModuleReference Include="vostok.clusterclient.core" />
+    <ModuleReference Include="vostok.clusterclient.transport" />
+    <ModuleReference Include="vostok.clusterclient.tracing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\vostok.commons.environment\Vostok.Commons.Environment\EnvironmentInfo.cs" Link="Commons\EnvironmentInfo.cs" />

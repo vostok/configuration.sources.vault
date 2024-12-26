@@ -12,26 +12,8 @@
     <ProjectReference Include="..\Vostok.Configuration.Sources.Vault\Vostok.Configuration.Sources.Vault.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Vostok.Configuration.Sources.Json">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.configuration.sources.json\Vostok.Configuration.Sources.Json\bin\Release\$(ReferencesFramework)\Vostok.Configuration.Sources.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Configuration.Abstractions">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.configuration.abstractions\Vostok.Configuration.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Configuration.Sources">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.configuration.sources\Vostok.Configuration.Sources\bin\Release\$(ReferencesFramework)\Vostok.Configuration.Sources.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.ClusterClient.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.clusterclient.core\Vostok.ClusterClient.Core\bin\Release\$(ReferencesFramework)\Vostok.ClusterClient.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Vostok.Logging.Abstractions">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\vostok.logging.abstractions\Vostok.Logging.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Logging.Abstractions.dll</HintPath>
-    </Reference>
+    <ModuleReference Include="vostok.configuration.sources.json" />
+    <ModuleReference Include="vostok.clusterclient.core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\vostok.commons.testing\Vostok.Commons.Testing\AssertionAssertions.cs" Link="Commons\AssertionAssertions.cs" />
