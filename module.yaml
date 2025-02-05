@@ -83,6 +83,4 @@ full-build > notests:
             - name: vostok.logging.abstractions
 
   deps:
-    - -vostok.devtools
-    - vostok.devtools@with-net6.0
     - vostok.commons.testing/src
